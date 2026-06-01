@@ -1,9 +1,11 @@
 import { weddingConfig } from '../config/wedding'
+import { KakaoRoughMap } from './KakaoRoughMap'
 import { Section } from './Section'
 
 export function Location() {
   const { date, venue } = weddingConfig
   const timeLabel = `오후 ${date.hour > 12 ? date.hour - 12 : date.hour}시 ${date.minute > 0 ? `${date.minute}분` : ''}`
+  const { kakaoMapEmbed } = venue
 
   return (
     <Section title="오시는 길" subtitle={venue.name}>
@@ -19,9 +21,12 @@ export function Location() {
           </a>
         )}
       </div>
-      <div className="map-placeholder">
-        <p>지도 이미지를 넣으려면 public/map.jpg 를 추가하세요</p>
-      </div>
+      <KakaoRoughMap
+        timestamp={kakaoMapEmbed.timestamp}
+        embedKey={kakaoMapEmbed.key}
+        mapHeight={kakaoMapEmbed.mapHeight}
+        name={venue.name}
+      />
       <div className="map-buttons">
         <a className="btn btn-outline" href={venue.naverMapUrl} target="_blank" rel="noreferrer">
           네이버 지도

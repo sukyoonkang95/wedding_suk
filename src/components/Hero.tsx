@@ -1,11 +1,16 @@
 import { weddingConfig } from '../config/wedding'
 
 export function Hero() {
-  const { groom, bride, date } = weddingConfig
+  const { groom, bride, date, heroImage } = weddingConfig
   const dateLabel = `${date.year}.${String(date.month).padStart(2, '0')}.${String(date.day).padStart(2, '0')}`
 
   return (
-    <header className="hero">
+    <header
+      className="hero"
+      style={{
+        backgroundImage: `linear-gradient(var(--color-hero-overlay), var(--color-hero-overlay)), url('${heroImage}'), linear-gradient(160deg, #d4c4b0 0%, #a89580 50%, #8a7a68 100%)`,
+      }}
+    >
       <div className="hero-overlay" />
       <div className="hero-content">
         <p className="hero-date">{dateLabel}</p>
